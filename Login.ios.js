@@ -8,7 +8,7 @@ var {
   Text,
   View,
   TouchableHighlight,
-  NavigatorIOS,
+  Navigator,
   ActivityIndicatorIOS
 } = React;
 
@@ -30,13 +30,7 @@ var Login = React.createClass({
 
   login() {
     setTimeout(() => {
-      this.props.navigator.replace({
-        component: LoggedIn,
-        title: 'home',
-        passProps: {
-          navigator: this.props.navigator
-        }
-      });
+      Navigator.getContext(this).replace({ id: 'loggedIn'});
     }, 1000);
   },
 

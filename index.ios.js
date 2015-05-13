@@ -10,23 +10,30 @@ var {
   StyleSheet,
   Text,
   View,
-  NavigatorIOS,
+  Navigator,
 } = React;
 
 var Login = require('./Login.ios');
+var LoggedIn = require('./LoggedIn.ios');
 
 var TestNavigatorIOS = React.createClass({
   render() {
     return (
-      <NavigatorIOS
-        navigationBarHidden={true}
+      <Navigator
         style={{
           flex:1,
         }}
         initialRoute={{
           title: 'Login',
-          component: Login,
         }}
+        renderScene={
+          (route, navigator) => {
+            if (route.id === 'loggedIn') {
+              return <LoggedIn />;
+            }
+            return <Login />
+          }
+        }
       />
     );
   }
